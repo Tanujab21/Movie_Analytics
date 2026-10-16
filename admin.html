@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+{% block content %}
+<div class="page-heading"><div><p class="eyebrow">CONTROL CENTRE</p><h1>Admin dashboard</h1><p>Manage the movie catalog and user roles.</p></div></div>
+<section class="panel"><h2>Add a movie</h2>
+<form method="post" action="{{ url_for('add_movie') }}" class="admin-form">
+  <div><label>Title *</label><input name="title" required></div>
+  <div><label>Genre *</label><input name="genre" placeholder="Horror, Action..." required></div>
+  <div><label>Release year</label><input type="number" name="release_year" min="1888" max="2100"></div>
+  <div><label>Language</label><input name="language" placeholder="English"></div>
+  <div class="wide"><label>Description</label><textarea name="description" rows="2"></textarea></div>
+  <div class="wide"><label>Tags (comma-separated)</label><input name="tags" placeholder="ghost, mystery, family"></div>
+  <button class="button" type="submit">Add movie</button>
+</form></section>
+<section class="panel"><h2>Movie catalog ({{ movies|length }})</h2><div class="table-wrap"><table><thead><tr><th>Title</th><th>Genre</th><th>Year</th><th>Action</th></tr></thead><tbody>
+{% for m in movies %}<tr><td>{{ m.title }}</td><td>{{ m.genre }}</td><td>{{ m.release_year or '—' }}</td><td><form method="post" action="{{ url_for('delete_movie', movie_id=m.movie_id) }}" onsubmit="return confirm('Delete this movie and its ratings?')"><button class="button danger small">Delete</button></form></td></tr>{% endfor %}
+</tbody></table></div></section>
+<section class="panel"><h2>Users ({{ users|length }})</h2><div class="table-wrap"><table><thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Action</th></tr></thead><tbody>
+{% for u in users %}<tr><td>{{ u.name }}</td><td>{{ u.email }}</td><td>{{ u.role }}</td><td>{% if u.role != 'admin' %}<form method="post" action="{{ url_for('make_admin', user_id=u.user_id) }}"><button class="button small">Make admin</button></form>{% else %}Admin{% endif %}</td></tr>{% endfor %}
+</tbody></table></div></section>
+{% endblock %}

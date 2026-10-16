@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Rating Analytics{% endblock %}
+{% block content %}
+<div class="page-heading"><div><p class="eyebrow">DATA INSIGHTS</p><h1>Rating analytics</h1><p>Statistics are calculated from ratings saved by users, using pandas.</p></div></div>
+<div class="stats">
+  <div class="stat-card"><span>Registered users</span><strong>{{ total_users }}</strong></div>
+  <div class="stat-card"><span>Movies in catalog</span><strong>{{ total_movies }}</strong></div>
+  <div class="stat-card"><span>Total ratings</span><strong>{{ total_ratings }}</strong></div>
+</div>
+<div class="two-col charts">
+  <section class="panel"><h2>Genre popularity</h2><p class="muted">Number of ratings for each genre.</p><canvas id="genreChart"></canvas></section>
+  <section class="panel"><h2>Rating distribution</h2><p class="muted">How many times each star rating was selected.</p><canvas id="ratingChart"></canvas></section>
+</div>
+<section class="panel"><h2>Highest-rated movies</h2>
+{% if top_movies %}<div class="table-wrap"><table><thead><tr><th>Movie</th><th>Genre</th><th>Average rating</th><th>Ratings</th></tr></thead><tbody>
+{% for m in top_movies %}<tr><td>{{ m.title }}</td><td>{{ m.genre }}</td><td class="rating">★ {{ '%.2f'|format(m.avg_rating) }}</td><td>{{ m.rating_count }}</td></tr>{% endfor %}
+</tbody></table></div>{% else %}<p>No user ratings yet. Rate movies to generate analytics.</p>{% endif %}
+</section>
+<section class="panel"><h2>Genre statistics</h2>
+{% if genre_data %}<div class="table-wrap"><table><thead><tr><th>Genre</th><th>Rating count</th><th>Average rating</th></tr></thead><tbody>
+{% for g in genre_data %}<tr><td>{{ g.genre }}</td><td>{{ g.rating_count }}</td><td>★ {{ '%.2f'|format(g.average_rating) }}</td></tr>{% endfor %}
+</tbody></table></div>{% else %}<p>Genre statistics will appear after users submit ratings.</p>{% endif %}
+</section>
+<script>
+const genreLabels = {{ genre_labels|tojson }};
+const genreValues = {{ genre_values|tojson }};
+const ratingLabels = {{ rating_distribution|map(attribute='rating')|list|tojson }};
+const ratingValues = {{ rating_distribution|map(attribute='count')|list|tojson }};
+new Chart(document.getElementById('genreChart'), {type:'bar',data:{labels:genreLabels,datasets:[{label:'Number of ratings',data:genreValues}]},options:{responsive:true}});
+new Chart(document.getElementById('ratingChart'), {type:'bar',data:{labels:ratingLabels.map(x=>x+' star'),datasets:[{label:'Number of ratings',data:ratingValues}]},options:{responsive:true,scales:{y:{beginAtZero:true}}}});
+</script>
+{% endblock %}

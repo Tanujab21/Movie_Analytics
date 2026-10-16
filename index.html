@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}CineMatch | Home{% endblock %}
+{% block content %}
+<section class="hero">
+  <div>
+    <p class="eyebrow">MOVIE DISCOVERY, MADE PERSONAL</p>
+    <h1>Find your next<br><span>favourite movie.</span></h1>
+    <p>Rate the movies you watch. CineMatch learns from your ratings and recommends similar movies, just like a content-based recommendation system.</p>
+    <a class="button" href="{{ url_for('movies') }}">Explore movies</a>
+    {% if not session.get('user_id') %}<a class="button secondary" href="{{ url_for('register') }}">Create account</a>{% endif %}
+  </div>
+  <div class="hero-art">🎥<div class="floating">★ Rate · Discover · Repeat</div></div>
+</section>
+<h2>Top-rated movies</h2>
+<div class="grid">
+{% for movie in top_movies %}
+  <article class="card">
+    <div class="poster">{{ movie.title[:1] }}</div>
+    <div class="cardbody"><h3>{{ movie.title }}</h3><p>{{ movie.genre }} · {{ movie.release_year or 'Year N/A' }}</p>
+    <p class="rating">★ {{ movie.avg_rating }} <small>({{ movie.rating_count }} ratings)</small></p>
+    <a href="{{ url_for('movies') }}">Browse movies →</a></div>
+  </article>
+{% endfor %}
+</div>
+<div class="feature-row">
+  <div><strong>🎯 Recommendations</strong><p>Similar genres, descriptions, tags, and your ratings.</p></div>
+  <div><strong>📊 Analytics</strong><p>Explore movie ratings, genre popularity, and rating distribution.</p></div>
+  <div><strong>🛠️ Admin tools</strong><p>Add and manage movies from the admin dashboard.</p></div>
+</div>
+{% endblock %}

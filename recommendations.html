@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Recommendations{% endblock %}
+{% block content %}
+<div class="page-heading"><div><p class="eyebrow">MADE FOR YOUR TASTE</p><h1>Recommended for you</h1><p>We compare movie descriptions, genres, tags, and languages with movies you rated highly.</p></div></div>
+{% if recommendations %}
+<div class="grid">{% for movie in recommendations %}
+  <article class="card"><div class="poster">{{ movie.title[:1] }}</div><div class="cardbody">
+    <span class="pill">Match score {{ '%.2f'|format(movie.score) }}</span><h3>{{ movie.title }}</h3><p>{{ movie.genre }} · {{ movie.release_year or 'Year N/A' }} · {{ movie.language }}</p>
+    <p class="description">{{ movie.description }}</p><a href="{{ url_for('movies', q=movie.title) }}">Find in catalog →</a>
+  </div></article>
+{% endfor %}</div>
+{% else %}<div class="panel"><h2>No recommendations yet</h2><p>All movies may already be rated, or the catalog is empty. Add movies or update your ratings.</p><a class="button" href="{{ url_for('movies') }}">Browse catalog</a></div>{% endif %}
+{% endblock %}

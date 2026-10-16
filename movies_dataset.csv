@@ -1,0 +1,31 @@
+movie_id,title,genre,release_year,language,description,tags
+1,The Conjuring,Horror,2013,English,Paranormal investigators help a family terrorized by a dark presence.,paranormal haunted house supernatural family
+2,Insidious,Horror,2010,English,A family tries to save their son from a frightening supernatural world.,paranormal supernatural family spirits
+3,A Quiet Place,Horror,2018,English,A family must stay silent to survive creatures that hunt by sound.,creatures suspense family survival
+4,It,Horror,2017,English,A group of friends face a terrifying shape-shifting presence.,clown supernatural friends mystery
+5,The Ring,Horror,2002,English,A journalist investigates a mysterious videotape linked to strange deaths.,mystery supernatural curse
+6,Get Out,Horror,2017,English,A weekend visit turns disturbing as a young man uncovers a dark secret.,psychological thriller mystery
+7,Interstellar,Sci-Fi,2014,English,Explorers travel through space in search of a future for humanity.,space science future adventure
+8,Inception,Sci-Fi,2010,English,A skilled thief enters dreams to plant an idea in someone's mind.,dreams science action thriller
+9,The Matrix,Sci-Fi,1999,English,A hacker discovers that reality is not what it seems.,technology future action virtual reality
+10,Arrival,Sci-Fi,2016,English,A linguist tries to communicate with mysterious visitors from space.,aliens language science mystery
+11,Dune,Sci-Fi,2021,English,A young noble travels to a dangerous desert planet with a valuable resource.,space future adventure politics
+12,The Martian,Sci-Fi,2015,English,An astronaut stranded on Mars fights to survive and return home.,space science survival
+13,The Dark Knight,Action,2008,English,A masked hero faces a dangerous criminal threatening a city.,superhero crime action justice
+14,John Wick,Action,2014,English,A retired assassin returns to a dangerous underworld.,assassin crime revenge fight
+15,Mad Max: Fury Road,Action,2015,English,Survivors cross a harsh desert in a high-speed chase.,chase survival dystopian adventure
+16,Mission Impossible,Action,1996,English,A secret agent races to stop a dangerous conspiracy.,spy mission thriller action
+17,The Hangover,Comedy,2009,English,Friends try to reconstruct a wild night before a wedding.,friends funny mystery party
+18,3 Idiots,Comedy,2009,Hindi,Three college friends question pressure and expectations in education.,college friends funny drama
+19,Home Alone,Comedy,1990,English,A child uses clever tricks to protect his home from burglars.,family funny holiday
+20,Queen,Comedy,2014,Hindi,A young woman takes a solo trip and discovers her independence.,travel friendship self discovery
+21,The Notebook,Romance,2004,English,Two young people fall in love despite differences and challenges.,love relationship drama
+22,La La Land,Romance,2016,English,A musician and an actor pursue their dreams and relationship.,music love dreams
+23,Titanic,Romance,1997,English,Two passengers from different backgrounds fall in love on a ship.,love tragedy history
+24,Yeh Jawaani Hai Deewani,Romance,2013,Hindi,"Friends explore travel, ambition, and relationships as they grow up.",friendship travel love
+25,Drishyam,Thriller,2015,Hindi,A family man uses clever planning after a troubling incident.,crime mystery family suspense
+26,Gone Girl,Thriller,2014,English,A disappearance turns into a media storm full of secrets.,mystery crime psychological
+27,Knives Out,Thriller,2019,English,A detective investigates a suspicious death in a wealthy family.,detective mystery crime
+28,Shutter Island,Thriller,2010,English,A detective investigates a disappearance at a remote institution.,psychological mystery investigation
+29,Coco,Animation,2017,English,A young musician discovers family history in a colourful world.,family music fantasy
+30,Inside Out,Animation,2015,English,Emotions guide a young girl through a major life change.,family feelings adventure

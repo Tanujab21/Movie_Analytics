@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Your Dashboard{% endblock %}
+{% block content %}
+<div class="page-heading"><div><p class="eyebrow">YOUR SPACE</p><h1>Hello, {{ session.get('name') }} 👋</h1><p>Every rating helps us understand what you enjoy.</p></div><a class="button" href="{{ url_for('recommendations') }}">Refresh recommendations</a></div>
+<div class="two-col">
+  <section class="panel"><h2>Recently rated</h2>
+  {% if user_ratings %}<div class="table-wrap"><table><thead><tr><th>Movie</th><th>Genre</th><th>Your rating</th></tr></thead><tbody>
+  {% for r in user_ratings %}<tr><td>{{ r.title }}</td><td>{{ r.genre }}</td><td class="rating">★ {{ r.rating }}</td></tr>{% endfor %}
+  </tbody></table></div>{% else %}<p>You have not rated any movies yet. Browse the catalog and rate a few movies first.</p><a class="button" href="{{ url_for('movies') }}">Rate movies</a>{% endif %}
+  </section>
+  <section class="panel"><h2>Picked for you</h2><p class="muted">Based on similarity to movies you rated highly.</p>
+  {% if recommendations %}{% for m in recommendations %}<div class="recommend-row"><div class="mini-poster">{{ m.title[:1] }}</div><div><strong>{{ m.title }}</strong><p>{{ m.genre }} · {{ m.release_year or 'N/A' }}</p></div></div>{% endfor %}<a href="{{ url_for('recommendations') }}">See all recommendations →</a>{% else %}<p>Browse and rate movies to personalise your recommendations.</p>{% endif %}
+  </section>
+</div>
+{% endblock %}

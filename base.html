@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}CineMatch{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<nav class="navbar">
+  <a class="brand" href="{{ url_for('index') }}">🎬 CineMatch</a>
+  <div class="navlinks">
+    <a href="{{ url_for('movies') }}">Movies</a>
+    <a href="{{ url_for('analytics') }}">Analytics</a>
+    {% if session.get('user_id') %}
+      <a href="{{ url_for('dashboard') }}">Dashboard</a>
+      <a href="{{ url_for('recommendations') }}">For You</a>
+      {% if session.get('role') == 'admin' %}<a href="{{ url_for('admin') }}">Admin</a>{% endif %}
+      <span class="welcome">Hi, {{ session.get('name') }}</span>
+      <a class="navbutton" href="{{ url_for('logout') }}">Logout</a>
+    {% else %}
+      <a href="{{ url_for('login') }}">Login</a>
+      <a class="navbutton" href="{{ url_for('register') }}">Sign up</a>
+    {% endif %}
+  </div>
+</nav>
+<main class="container">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="alert {{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+  {% block content %}{% endblock %}
+</main>
+<footer>Movie Rating Analytics & Recommendation Web Portal · Student Project</footer>
+</body>
+</html>
